@@ -78,23 +78,23 @@ fn main() {
         if let Some(ch) = guess.chars().next() {
             if !have_guessed.contains(&ch) {
                 have_guessed.insert(ch);
-            }
-            let mut i = 0;
-            let mut f = false;
-            while i < secret_word_chars.len() {
-                if secret_word_chars[i] == ch {
-                    my_guess[i] = ch;
-                    res -= 1;
-                    f = true;
+                let mut i = 0;
+                let mut f = false;
+                while i < secret_word_chars.len() {
+                    if secret_word_chars[i] == ch {
+                        my_guess[i] = ch;
+                        res -= 1;
+                        f = true;
+                    }
+                    i += 1;
                 }
-                i += 1;
+                cnt += 1;
+                if !f {
+                    println!("Sorry, that letter is not in the word");
+                }
             }
-            cnt += 1;
-            if !f {
-                println!("Sorry, that letter is not in the word");
-            }
+            println!("");
         }
-        println!("");
     }
     if res == 0 {
         println!("Congratulations you guessed the secret word: {0}!", secret_word);
